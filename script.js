@@ -17,7 +17,7 @@ const controlsSection = document.getElementById('controlsSection');
 const canvasSection = document.getElementById('canvasSection');
 const actionsSection = document.getElementById('actionsSection');
 const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d', { willReadFrequently: true });
+const ctx = canvas.getContext('2d');
 const widthInput = document.getElementById('widthInput');
 const heightInput = document.getElementById('heightInput');
 const aspectRatioToggle = document.getElementById('aspectRatioToggle');
@@ -179,14 +179,8 @@ function updateCanvas() {
         ctx.closePath();
         ctx.clip();
 
-        // Calculate centering offset for the image
-        const scaledWidth = size;
-        const scaledHeight = size;
-        const offsetX = 0;
-        const offsetY = 0;
-
         // Draw image within circular clip
-        ctx.drawImage(state.originalImage, offsetX, offsetY, scaledWidth, scaledHeight);
+        ctx.drawImage(state.originalImage, 0, 0, size, size);
         ctx.restore();
     } else {
         // Rectangle crop
