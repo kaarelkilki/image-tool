@@ -273,26 +273,41 @@ function handleDownload() {
   const width = parseInt(widthInput.value) || state.originalImage.width;
   const height = parseInt(heightInput.value) || state.originalImage.height;
 
-  tempCanvas.width = width;
-  tempCanvas.height = height;
-
   if (state.cropShape === "circle") {
-    // Draw full image with offset
+    // For circle, make canvas size equal to the diameter (smallest dimension)
+    const diameter = Math.min(width, height);
+    const radius = diameter / 2;
+
+    tempCanvas.width = diameter;
+    tempCanvas.height = diameter;
+
+    // Calculate the position to draw the image so the circle is centered
+    const sourceRadius = Math.min(width, height) / 2;
+    const sourceX = state.offsetX + (width / 2 - sourceRadius);
+    const sourceY = state.offsetY + (height / 2 - sourceRadius);
+
+    // Draw the portion of the image that will be in the circle
     tempCtx.drawImage(
       state.originalImage,
-      state.offsetX,
-      state.offsetY,
-      width,
-      height
+      sourceX,
+      sourceY,
+      diameter,
+      diameter,
+      0,
+      0,
+      diameter,
+      diameter
     );
 
     // Create circular mask
-    const radius = Math.min(width, height) / 2;
     tempCtx.globalCompositeOperation = "destination-in";
     tempCtx.beginPath();
-    tempCtx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
+    tempCtx.arc(radius, radius, radius, 0, Math.PI * 2);
     tempCtx.fill();
   } else {
+    tempCanvas.width = width;
+    tempCanvas.height = height;
+
     // Rectangle crop - draw image with offset
     tempCtx.drawImage(
       state.originalImage,
