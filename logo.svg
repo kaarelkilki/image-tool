@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="#667eea" stroke="#764ba2" stroke-width="2"/>
+  
+  <!-- Image frame -->
+  <rect x="16" y="16" width="32" height="32" rx="3" fill="none" stroke="white" stroke-width="3"/>
+  
+  <!-- Mountain/image icon -->
+  <path d="M 18 40 L 26 28 L 32 34 L 40 22 L 46 40 Z" fill="white" opacity="0.9"/>
+  
+  <!-- Crop corners -->
+  <path d="M 14 14 L 14 20 M 14 14 L 20 14" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 50 14 L 50 20 M 50 14 L 44 14" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 14 50 L 14 44 M 14 50 L 20 50" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 50 50 L 50 44 M 50 50 L 44 50" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Small circle indicator -->
+  <circle cx="38" cy="22" r="3" fill="#fbbf24"/>
+</svg>

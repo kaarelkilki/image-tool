@@ -1,99 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Resizer + Circle Crop Tool</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>Image Resizer + Circle Crop Tool</h1>
-            <p class="subtitle">Upload, resize, and crop your images with ease</p>
-        </header>
+      <header>
+        <h1>Image Resizer + Circle Crop Tool</h1>
+        <p class="subtitle">Upload, resize, and crop your images with ease</p>
+      </header>
 
-        <main>
-            <!-- Upload Area -->
-            <section class="upload-section">
-                <div class="upload-area" id="uploadArea">
-                    <svg class="upload-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="17 8 12 3 7 8"></polyline>
-                        <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    <p class="upload-text">Drag & Drop your image here</p>
-                    <p class="upload-subtext">or</p>
-                    <button class="btn btn-primary" id="selectFileBtn">Select File</button>
-                    <input type="file" id="fileInput" accept="image/*" hidden>
-                </div>
-            </section>
+      <main>
+        <!-- Upload Area -->
+        <section class="upload-section">
+          <div class="upload-area" id="uploadArea">
+            <svg
+              class="upload-icon"
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <p class="upload-text">Drag & Drop your image here</p>
+            <p class="upload-subtext">or</p>
+            <button class="btn btn-primary" id="selectFileBtn">
+              Select File
+            </button>
+            <input type="file" id="fileInput" accept="image/*" hidden />
+          </div>
+        </section>
 
-            <!-- Controls Section -->
-            <section class="controls-section" id="controlsSection" style="display: none;">
-                <!-- Resize Controls -->
-                <div class="control-group">
-                    <h3>Resize</h3>
-                    <div class="control-row">
-                        <label>
-                            Width
-                            <input type="number" id="widthInput" min="1" class="input-number">
-                            <span class="unit">px</span>
-                        </label>
-                        <label>
-                            Height
-                            <input type="number" id="heightInput" min="1" class="input-number">
-                            <span class="unit">px</span>
-                        </label>
-                    </div>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="aspectRatioToggle" checked>
-                        <span>Lock Aspect Ratio</span>
-                    </label>
-                </div>
+        <!-- Controls Section -->
+        <section
+          class="controls-section"
+          id="controlsSection"
+          style="display: none"
+        >
+          <!-- Resize Controls -->
+          <div class="control-group">
+            <h3>Resize</h3>
+            <div class="control-row">
+              <label>
+                Width
+                <input
+                  type="number"
+                  id="widthInput"
+                  min="1"
+                  class="input-number"
+                />
+                <span class="unit">px</span>
+              </label>
+              <label>
+                Height
+                <input
+                  type="number"
+                  id="heightInput"
+                  min="1"
+                  class="input-number"
+                />
+                <span class="unit">px</span>
+              </label>
+            </div>
+            <label class="checkbox-label">
+              <input type="checkbox" id="aspectRatioToggle" checked />
+              <span>Lock Aspect Ratio</span>
+            </label>
+          </div>
 
-                <!-- Crop Controls -->
-                <div class="control-group">
-                    <h3>Crop Shape</h3>
-                    <div class="toggle-group">
-                        <button class="toggle-btn active" data-crop="rectangle">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                            </svg>
-                            Rectangle
-                        </button>
-                        <button class="toggle-btn" data-crop="circle">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                            </svg>
-                            Circle
-                        </button>
-                    </div>
-                </div>
-            </section>
+          <!-- Crop Controls -->
+          <div class="control-group">
+            <h3>Crop Shape</h3>
+            <div class="toggle-group">
+              <button class="toggle-btn active" data-crop="rectangle">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                </svg>
+                Rectangle
+              </button>
+              <button class="toggle-btn" data-crop="circle">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                </svg>
+                Circle
+              </button>
+            </div>
+          </div>
+        </section>
 
-            <!-- Canvas Section -->
-            <section class="canvas-section" id="canvasSection" style="display: none;">
-                <div class="canvas-container">
-                    <canvas id="canvas"></canvas>
-                </div>
-            </section>
+        <!-- Canvas Section -->
+        <section
+          class="canvas-section"
+          id="canvasSection"
+          style="display: none"
+        >
+          <div class="canvas-container">
+            <canvas id="canvas"></canvas>
+          </div>
+        </section>
 
-            <!-- Action Buttons -->
-            <section class="actions-section" id="actionsSection" style="display: none;">
-                <button class="btn btn-secondary" id="resetBtn">Reset</button>
-                <button class="btn btn-success" id="downloadBtn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    Download PNG
-                </button>
-            </section>
-        </main>
+        <!-- Action Buttons -->
+        <section
+          class="actions-section"
+          id="actionsSection"
+          style="display: none"
+        >
+          <button class="btn btn-secondary" id="resetBtn">Reset</button>
+          <button class="btn btn-success" id="downloadBtn">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download PNG
+          </button>
+        </section>
+      </main>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
